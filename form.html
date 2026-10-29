@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Оформление заказа — Red'n'black</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Arial', sans-serif;
+    background: radial-gradient(circle at center, #1a0000 0%, #000 100%);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .form-container {
+    background: #1a1a1a;
+    border: 2px solid #8b0000;
+    border-radius: 15px;
+    padding: 40px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 0 30px rgba(255,0,0,0.3);
+  }
+  .form-container h1 {
+    text-align: center;
+    color: #ff3333;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+  }
+  .form-container .subtitle {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 30px;
+    font-size: 0.95em;
+  }
+  .form-group { margin-bottom: 20px; }
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ffcccc;
+    font-size: 0.95em;
+  }
+  input, select, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background: #0d0d0d;
+    border: 1px solid #8b0000;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1em;
+    transition: 0.3s;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #ff0000;
+    box-shadow: 0 0 10px rgba(255,0,0,0.5);
+  }
+  .submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #ff0000, #8b0000);
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+  }
+  .submit-btn:hover {
+    background: linear-gradient(135deg, #8b0000, #ff0000);
+    box-shadow: 0 0 20px #ff0000;
+  }
+  .back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #ff6666;
+    text-decoration: none;
+    font-size: 0.9em;
+  }
+  .back-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h1>Оформление заказа</h1>
+    <p class="subtitle">Заполните данные — мы свяжемся с вами</p>
+
+    <form onsubmit="event.preventDefault(); alert('Спасибо! Ваш заказ принят. Мы свяжемся с вами.');">
+
+      <div class="form-group">
+        <label for="name">Ваше имя *</label>
+        <input type="text" id="name" required placeholder="Иван Иванов">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Телефон *</label>
+        <input type="tel" id="phone" required placeholder="+7 (___) ___-__-__">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@example.com">
+      </div>
+
+      <div class="form-group">
+        <label for="product">Выберите товар *</label>
+        <select id="product" required>
+          <option value="">— Выберите —</option>
+          <option>Спасательный дрон RB-1 — 89 900 ₽</option>
+          <option>Станция зарядки Dock RB — 45 000 ₽</option>
+          <option>Комплект "Спасатель" — 120 000 ₽</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Адрес доставки</label>
+        <textarea id="address" rows="3" placeholder="Город, улица, дом, квартира"></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">ОТПРАВИТЬ ЗАКАЗ</button>
+    </form>
+
+    <a href="index.html" class="back-link">← Вернуться на главную</a>
+  </div>
+
+</body>
+</html>

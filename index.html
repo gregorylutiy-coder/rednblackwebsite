@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Спасательный дрон — Инновационные дроны-спасатели</title>
+<style>
+  /* БАЗОВЫЕ НАСТРОЙКИ */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+    line-height: 1.6;
+  }
+
+  /* НАВИГАЦИЯ */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 18px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+  nav .brand {
+    font-size: 1.5em;
+    font-weight: 900;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+  }
+  nav .brand span { color: #d90429; }
+  nav ul {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+  }
+  nav ul a {
+    color: #495057;
+    text-decoration: none;
+    font-size: 0.95em;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+  nav ul a:hover { color: #d90429; }
+
+  /* ШАПКА (HERO) */
+  header {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2b2b2b 100%);
+    padding: 120px 20px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(217,4,41,0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  header h1 {
+    font-size: 4.5em;
+    font-weight: 900;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+    position: relative;
+    z-index: 1;
+  }
+  header h1 span { color: #d90429; }
+  header p.slogan {
+    font-size: 1.3em;
+    color: #ced4da;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 1;
+  }
+  .header-btn {
+    display: inline-block;
+    padding: 18px 50px;
+    background: #d90429;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1em;
+    transition: 0.3s;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 10px 20px rgba(217,4,41,0.3);
+    border: none;
+    cursor: pointer;
+  }
+  .header-btn:hover {
+    background: #ef233c;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(217,4,41,0.4);
+  }
+
+  /* СЕКЦИИ */
+  section { padding: 100px 5%; max-width: 1300px; margin: 0 auto; }
+  section h2 {
+    font-size: 2.5em;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  section h2 span { color: #d90429; }
+  section .section-sub {
+    text-align: center;
+    color: #6c757d;
+    max-width: 700px;
+    margin: 0 auto 60px;
+    font-size: 1.1em;
+  }
+
+  /* ПРОБЛЕМА */
+  .problem-box {
+    background: #fff;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    max-width: 900px;
+    margin: 0 auto;
+    border-left: 6px solid #d90429;
+  }
+  .problem-text {
+    font-size: 1.1em;
+    color: #495057;
+  }
+  .problem-text p { margin-bottom: 20px; }
+  .problem-text strong { color: #d90429; font-weight: 700; }
+
+  /* СТАТИСТИКА */
+  .stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 60px;
+    padding: 60px 5%;
+    background: #fff;
+    border-radius: 20px;
+    margin-top: -60px;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .stat { text-align: center; }
+  .stat .num {
+    font-size: 3.5em;
+    color: #d90429;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .stat .label { color: #495057; font-weight: 600; font-size: 1em; }
+
+  /* РЕШЕНИЕ */
+  .solution-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+  }
+  .solution-item {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+    transition: 0.3s;
+    border-bottom: 4px solid #e9ecef;
+  }
+  .solution-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    border-bottom-color: #d90429;
+  }
+  .solution-item h3 {
+    color: #1a1a1a;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    font-weight: 700;
+  }
+  .solution-item p { color: #6c757d; font-size: 0.95em; }
+  .solution-item .icon {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+
+  /* КАК ЭТО РАБОТАЕТ */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+  }
+  .step {
+    text-align: center;
+    padding: 40px 25px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+    position: relative;
+  }
+  .step .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: #d90429;
+    color: #fff;
+    border-radius: 50%;
+    font-weight: 900;
+    font-size: 1.5em;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 15px rgba(217,4,41,0.3);
+  }
+  .step h3 { color: #1a1a1a; margin-bottom: 15px; font-size: 1.2em; font-weight: 700; }
+  .step p { color: #6c757d; font-size: 0.95em; }
+
+  /* ТОВАРЫ */
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    width: 320px;
+    overflow: hidden;
+    transition: 0.3s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e9ecef;
+  }
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+    border-color: #d90429;
+  }
+  .card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    background-color: #eee;
+  }
+  .card img.droneport-img {
+    object-fit: contain;
+    padding: 15px;
+    background-color: #f8f9fa;
+  }
+  .card-body {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .card-body h3 {
+    color: #1a1a1a;
+    margin-bottom: 12px;
+    font-size: 1.3em;
+    font-weight: 800;
+    text-align: center;
+  }
+  .card-body p.main-desc {
+    color: #6c757d;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    text-align: center;
+    flex-grow: 1;
+  }
+  .card-features {
+    margin-bottom: 25px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 12px;
+  }
+  .card-features h4 {
+    color: #1a1a1a;
+    font-size: 0.85em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+  }
+  .card-features ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10px;
+  }
+  .card-features li {
+    color: #495057;
+    font-size: 0.85em;
+    margin-bottom: 6px;
+    padding-left: 22px;
+    position: relative;
+  }
+  .card-features li::before {
+    content: "✓";
+    color: #d90429;
+    position: absolute;
+    left: 0;
+    font-weight: 900;
+    font-size: 1em;
+  }
+  
+  .price-wrapper {
+    text-align: center;
+    margin-top: auto;
+  }
+  .price {
+    font-size: 1.8em;
+    color: #d90429;
+    font-weight: 900;
+    margin-bottom: 15px;
+  }
+  .buy-btn {
+    display: inline-block;
+    padding: 14px 30px;
+    background: #d90429;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1em;
+    transition: 0.3s;
+    width: 100%;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+  }
+  .buy-btn:hover {
+    background: #ef233c;
+    box-shadow: 0 10px 20px rgba(217,4,41,0.2);
+  }
+
+  /* КОМАНДА */
+  .team {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+  }
+  .member {
+    text-align: center;
+    background: #fff;
+    padding: 40px 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+    transition: 0.3s;
+  }
+  .member:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
+  .member .avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
+    border: 3px solid #e9ecef;
+  }
+  .member h3 { color: #1a1a1a; margin-bottom: 10px; font-size: 1.2em; font-weight: 700; }
+  .member p { color: #6c757d; font-size: 0.95em; }
+
+  /* CTA */
+  .cta {
+    background: #1a1a1a;
+    text-align: center;
+    padding: 100px 20px;
+    border-radius: 30px;
+    margin: 60px 5%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta h2 { color: #fff; margin-bottom: 20px; }
+  .cta p { color: #ced4da; margin-bottom: 40px; font-size: 1.2em; }
+  .cta .header-btn { background: #d90429; }
+
+  /* ПОДВАЛ */
+  footer {
+    background: #fff;
+    text-align: center;
+    padding: 60px 20px;
+    color: #6c757d;
+    border-top: 1px solid #e9ecef;
+  }
+  footer .logo {
+    color: #1a1a1a;
+    font-size: 1.8em;
+    font-weight: 900;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+  footer .logo span { color: #d90429; }
+  footer .links {
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  footer .links a {
+    color: #495057;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+  footer .links a:hover { color: #d90429; }
+
+  /* АДАПТИВ */
+  @media (max-width: 768px) {
+    header h1 { font-size: 2.8em; }
+    nav { padding: 15px 20px; flex-direction: column; gap: 15px; }
+    nav ul { gap: 20px; flex-wrap: wrap; justify-content: center; }
+    section { padding: 60px 20px; }
+    section h2 { font-size: 2em; }
+    .problem-box { padding: 30px 20px; }
+    .stats-container { gap: 30px; padding: 40px 20px; margin-top: -30px; }
+    .cta { margin: 40px 20px; padding: 60px 20px; }
+    .card { width: 100%; max-width: 360px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- НАВИГАЦИЯ -->
+  <nav>
+    <div class="brand">Спасательный <span>дрон</span></div>
+    <ul>
+      <li><a href="#problem">Проблема</a></li>
+      <li><a href="#solution">Решение</a></li>
+      <li><a href="#how">Как работает</a></li>
+      <li><a href="#products">Товары</a></li>
+      <li><a href="#team">Команда</a></li>
+    </ul>
+  </nav>
+
+  <!-- ШАПКА -->
+  <header>
+    <h1>Спасательный <span>дрон</span></h1>
+    <p class="slogan">Инновационные технологии, которые спасают жизни на воде. Проект команды «Red'n'Black».</p>
+    <a href="#products" class="header-btn">Смотреть товары</a>
+  </header>
+
+  <!-- ПРОБЛЕМА -->
+  <section id="problem" style="padding-bottom: 40px;">
+    <h2>Проблема, которую мы <span>решаем</span></h2>
+    <p class="section-sub">Утопление — одна из главных причин смертности в мире</p>
+    <div class="problem-box">
+      <div class="problem-text">
+        <p>Ежегодно в мире <strong>тонут более 230 000 человек</strong> — по данным Всемирной организации здравоохранения. Это одна из ведущих причин непреднамеренной смерти. Особенно остро проблема стоит на диких пляжах, в местах, где нет спасателей, и в холодное время года, когда помощь приходит слишком поздно.</p>
+        <p><strong>Главная причина гибели — время.</strong> Когда человек начинает тонуть, у спасателей есть всего <strong>3–5 минут</strong>, чтобы его достать. При этом обычная лодка или спасатель добираются до места в среднем за 7–10 минут. Часто этого времени уже недостаточно.</p>
+        <p>Дополнительно: тонущего человека очень сложно заметить, особенно в ветреную погоду, в сумерках или если он находится далеко от берега. Люди тонут <strong>тихо и незаметно</strong> — у них нет сил кричать и махать руками.</p>
+        <p>Мы в команде <strong>«Red'n'black»</strong> решили бросить вызов этой проблеме. Наша цель — сократить время оказания первой помощи на воде до <strong>секунд</strong>, а не минут.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- СТАТИСТИКА -->
+  <div class="stats-container">
+    <div class="stat">
+      <div class="num">230 000+</div>
+      <div class="label">человек тонут в год</div>
+    </div>
+    <div class="stat">
+      <div class="num">3-5 мин</div>
+      <div class="label">критическое время</div>
+    </div>
+    <div class="stat">
+      <div class="num">30 сек</div>
+      <div class="label">реакция дрона</div>
+    </div>
+    <div class="stat">
+      <div class="num">500 м</div>
+      <div class="label">радиус действия</div>
+    </div>
+  </div>
+
+  <!-- РЕШЕНИЕ -->
+  <section id="solution">
+    <h2>Наше <span>решение</span></h2>
+    <p class="section-sub">Автономная система спасения на воде на базе дронов</p>
+    <div class="solution-grid">
+      <div class="solution-item">
+        <div class="icon">🚁</div>
+        <h3>Спасательный дрон</h3>
+        <p>Квадрокоптер, который по сигналу тревоги взлетает со станции и за 30 секунд долетает до утопающего, сбрасывая ему спасательный круг.</p>
+      </div>
+      <div class="solution-item">
+        <div class="icon">📍</div>
+        <h3>Точное наведение</h3>
+        <p>Оператор видит видео с камеры в реальном времени и наводит дрон прямо на цель. В автономном режиме дрон сам находит человека.</p>
+      </div>
+      <div class="solution-item">
+        <div class="icon">🔋</div>
+        <h3>Дронопорт</h3>
+        <p>Автоматический док, в котором дроны стоят заряженные 24/7. После вылета дрон сам возвращается и встаёт на зарядку.</p>
+      </div>
+      <div class="solution-item">
+        <div class="icon">🌊</div>
+        <h3>Работа в любую погоду</h3>
+        <p>Корпус защищён от воды и ветра. Дрон работает при дожде, ветре до 15 м/с и при температуре от -10 до +45 °C.</p>
+      </div>
+      <div class="solution-item">
+        <div class="icon">📡</div>
+        <h3>Связь и телеметрия</h3>
+        <p>Передача видео, координат и статуса дрона на пульт спасателя. Уведомления в экстренные службы автоматически.</p>
+      </div>
+      <div class="solution-item">
+        <div class="icon">🛟</div>
+        <h3>Спасательный круг</h3>
+        <p>Легкий, яркий, самонадувающийся круг. Сбрасывается с высоты и остаётся на воде до подхода спасателей.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- КАК РАБОТАЕТ -->
+  <section id="how" style="background: #fff; max-width: 100%; border-radius: 0;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2>Как это <span>работает</span></h2>
+      <p class="section-sub">От тревоги до спасения — 4 простых шага</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Сигнал тревоги</h3>
+          <p>Спасатель на пляже видит тонущего или нажимает кнопку SOS на пульте.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Взлёт дрона</h3>
+          <p>Дрон автоматически вылетает со станции за 5 секунд и летит к цели на скорости 20 м/с.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Сброс круга</h3>
+          <p>Приблизившись к утопающему, дрон сбрасывает спасательный круг точно рядом с человеком.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h3>Возврат на базу</h3>
+          <p>Человек держится за круг, а дрон возвращается на станцию и готовится к следующему вылету.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ТОВАРЫ -->
+  <section id="products">
+    <h2>Наши <span>товары</span></h2>
+    <p class="section-sub">Готовые решения для пляжей, баз отдыха и спасательных служб</p>
+    <div class="products">
+
+      <!-- Товар 1: Дрон Альбатрос -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=600&auto=format&fit=crop" alt="Спасательный квадрокоптер Альбатрос">
+        <div class="card-body">
+          <h3>Спасательный дрон Альбатрос</h3>
+          <p class="main-desc">Флагманский квадрокоптер для экстренной доставки спасательных средств. Приходит на помощь в 5 раз быстрее спасательной лодки.</p>
+
+          <div class="card-features">
+            <h4>Ключевые характеристики:</h4>
+            <ul>
+              <li>Скорость полёта до 72 км/ч</li>
+              <li>Время реакции: 30 секунд</li>
+              <li>Сброс самонадувного круга</li>
+              <li>Камера 4K с 30-кратным зумом</li>
+              <li>Защита от воды IP67</li>
+            </ul>
+            <h4>В комплекте:</h4>
+            <ul>
+              <li>Дрон Альбатрос (2 шт.)</li>
+              <li>Пульт ДУ + 2 АКБ</li>
+              <li>Кейс для транспортировки</li>
+              <li style="color: #d90429; font-weight: bold;">Спасательный круг (1 шт.)</li>
+            </ul>
+          </div>
+
+          <div class="price-wrapper">
+            <div class="price">90 000 ₽</div>
+            <a href="form.html" class="buy-btn">КУПИТЬ</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Товар 2: Дронопорт (ВАША КАРТИНКА) -->
+      <div class="card">
+        <!-- ВСТАВЬТЕ СЮДА КОД BASE64 -->
+        <img src="drono_port.png" alt="Droneport">
+        <div class="card-body">
+          <h3>Дронопорт Dock RB</h3>
+          <p class="main-desc">Интеллектуальный автоматический дронопорт для круглосуточного дежурства. Дрон всегда готов к вылету на 100%.</p>
+
+          <div class="card-features">
+            <h4>Особенности:</h4>
+            <ul>
+              <li>Зарядка до 100% за 40 минут</li>
+              <li>Защита от влаги и пыли IP66</li>
+              <li>Автоматическая смена АКБ</li>
+              <li>Подогрев в зимнее время</li>
+              <li>Работает от сети 220В</li>
+            </ul>
+          </div>
+
+          <div class="price-wrapper">
+            <div class="price">65 000 ₽</div>
+            <a href="form.html" class="buy-btn">КУПИТЬ</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Товар 3: Комплект -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1527977966376-1c8408f9f108?q=80&w=600&auto=format&fit=crop" alt="Комплект спасения">
+        <div class="card-body">
+          <h3>Комплект «Спасатель»</h3>
+          <p class="main-desc">Полноценный спасательный пост "под ключ". Идеальное решение для пляжей, отелей и баз отдыха. Экономия 30 000 ₽.</p>
+
+          <div class="card-features">
+            <h4>Что входит:</h4>
+            <ul>
+              <li>Дрон Альбатрос (2 шт.)</li>
+              <li>Дронопорт Dock RB (1 шт.)</li>
+              <li>Спасательные круги (2 шт.)</li>
+              <li>Пульт управления с креплением</li>
+              <li>Обучение персонала (1 день)</li>
+            </ul>
+          </div>
+
+          <div class="price-wrapper">
+            <div class="price">210 000 ₽</div>
+            <a href="form.html" class="buy-btn">КУПИТЬ</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Товар 4: Круг отдельно -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1590483859276-2ebff101fbd6?q=80&w=600&auto=format&fit=crop" alt="Спасательный круг">
+        <div class="card-body">
+          <h3>Спасательный круг</h3>
+          <p class="main-desc">Профессиональный самонадувной спасательный круг для дрона. Яркий, заметный на воде, с креплением для сброса.</p>
+
+          <div class="card-features">
+            <h4>Характеристики:</h4>
+            <ul>
+              <li>Самонадувной механизм</li>
+              <li>Удержание до 150 кг</li>
+              <li>Яркий оранжевый цвет</li>
+              <li>Крепление для сброса с дрона</li>
+              <li>Вес: всего 1.2 кг</li>
+            </ul>
+          </div>
+
+          <div class="price-wrapper">
+            <div class="price">9 000 ₽</div>
+            <a href="form.html" class="buy-btn">КУПИТЬ</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- КОМАНДА -->
+  <section id="team">
+    <h2>Наша <span>команда</span></h2>
+    <p class="section-sub">Команда «Red'n'Black» — это люди, которые верят, что технологии должны спасать жизни</p>
+    <div class="team">
+      <div class="member">
+        <div class="avatar">👨‍💻</div>
+        <h3>Инженер-конструктор</h3>
+        <p>Разрабатывает корпус и механику дрона</p>
+      </div>
+      <div class="member">
+        <div class="avatar">👩‍🔬</div>
+        <h3>Программист</h3>
+        <p>Пишет автопилот и систему наведения</p>
+      </div>
+      <div class="member">
+        <div class="avatar">👨‍🚒</div>
+        <h3>Спасатель-консультант</h3>
+        <p>Помогает сделать систему удобной в реальных условиях</p>
+      </div>
+      <div class="member">
+        <div class="avatar">👩‍💼</div>
+        <h3>Менеджер проекта</h3>
+        <p>Следит за сроками и связью с заказчиками</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <h2>Готовы спасать жизни вместе с нами?</h2>
+    <p>Оставьте заявку — и мы поможем подобрать решение для вашего пляжа или объекта</p>
+    <a href="form.html" class="header-btn">Оформить заказ</a>
+  </div>
+
+  <!-- ПОДВАЛ (БЕЗ QR-КОДА) -->
+  <footer>
+    <div class="logo">Спасательный <span>Дрон</span></div>
+    <div class="links">
+      <a href="#problem">Проблема</a>
+      <a href="#solution">Решение</a>
+      <a href="#products">Товары</a>
+      <a href="#team">Команда</a>
+      <a href="form.html">Оформить заказ</a>
+    </div>
+    <p>© 2025 Проект «Спасательный дрон» (Команда «Red'n'Black»). Спасаем жизни вместе.</p>
+  </footer>
+
+</body>
+</html>ы
